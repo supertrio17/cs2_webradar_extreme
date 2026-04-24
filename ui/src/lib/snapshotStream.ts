@@ -1,9 +1,9 @@
-import { RadarEnvelope, RadarSnapshot } from "../types/contracts";
+import { PlayerState, RadarEnvelope, RadarSnapshot } from "../types/contracts";
 
 const mockNames = ["Apex", "Nexa", "Fury", "Rogue", "Shade", "Echo", "Nova", "Pulse", "Zen", "Viper"];
 
 function mockSnapshot(tick: number): RadarSnapshot {
-  const players = mockNames.map((name, index) => {
+  const players: PlayerState[] = mockNames.map((name, index) => {
     const angle = tick / 20 + index;
     const radius = 280 + index * 20;
     return {
