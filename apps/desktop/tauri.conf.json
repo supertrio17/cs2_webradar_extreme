@@ -3,6 +3,7 @@
   "productName": "cs2_webradar_extreme",
   "identifier": "com.cs2.webradar.extreme",
   "build": {
+    "beforeBuildCommand": "npm --prefix ../../ui run build",
     "frontendDist": "../../ui/dist"
   },
   "app": {

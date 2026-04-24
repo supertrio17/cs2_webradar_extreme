@@ -13,5 +13,10 @@ ui/dist
 .DS_Store
 Thumbs.db
 
+# Visual Studio
+.vs/
+*.user
+*.suo
+
 # App runtime dumps
 runtime-data/
