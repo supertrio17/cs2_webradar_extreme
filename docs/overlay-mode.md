@@ -6,6 +6,8 @@ Overlay mode is optional and gated by platform support.
 
 - `--overlay` enables overlay profile request.
 - `--click-through` requests pointer passthrough mode.
+- Overlay flags are only applied in desktop mode (`--ui-mode desktop`).
+- In browser mode (`--ui-mode browser`), overlay-related flags are ignored with a warning.
 - On non-Windows environments, runtime logs fallback to desktop mode.
 
 ## Design constraints
