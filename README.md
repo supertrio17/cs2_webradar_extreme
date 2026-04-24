@@ -26,7 +26,31 @@ cargo run -p cs2_webradar_extreme -- dump refresh --output ./runtime-data/dumps/
 
 You can build the full desktop app (frontend + Rust runtime) directly from Visual Studio via the included solution.
 
-### Prerequisites
+### One-click prerequisites install (recommended)
+
+From an **elevated Command Prompt** in the repository root:
+
+```bat
+scripts\install-prerequisites.bat
+```
+
+The installer is idempotent and uses `winget` to install/verify:
+
+- Visual Studio 2022 Build Tools + C++ workload (MSVC v143 + Windows SDK)
+- Microsoft Edge WebView2 Runtime
+- Rust stable + `x86_64-pc-windows-msvc` target
+- Node.js LTS + npm
+- Git
+
+Optional verification-only check:
+
+```bat
+scripts\verify-prerequisites.bat
+```
+
+If `winget` is unavailable, the installer prints clear fallback guidance (including an optional Chocolatey command).
+
+### Manual prerequisites (fallback)
 
 - Visual Studio 2022 (or Build Tools) with **Desktop development with C++** installed.
   - MSVC v143 x64 toolset
@@ -35,13 +59,16 @@ You can build the full desktop app (frontend + Rust runtime) directly from Visua
   - `rustup toolchain install stable`
   - `rustup target add x86_64-pc-windows-msvc`
 - Node.js (LTS) + npm (for building the React UI)
+- Git
+- WebView2 Runtime (required by Tauri-based desktop runtimes)
 
 ### Build steps
 
-1. Open `cs2_webradar_extreme.sln` in Visual Studio.
-2. Select configuration: **Release**.
-3. Select platform: **x64**.
-4. Build the solution (`Build > Build Solution`) or run `Rebuild`.
+1. Run `scripts\install-prerequisites.bat` (recommended) or install prerequisites manually.
+2. Open `cs2_webradar_extreme.sln` in Visual Studio.
+3. Select configuration: **Release**.
+4. Select platform: **x64**.
+5. Build the solution (`Build > Build Solution`) or run `Rebuild`.
 
 Visual Studio calls `scripts/build-windows.ps1`, which runs the end-to-end pipeline:
 
@@ -75,3 +102,5 @@ For distribution in that mode, share the installer artifact from the `bundle` di
 - `data/dumps/embedded`: bundled fallback dump pack.
 - `docs`: architecture and operation docs.
 - `scripts/build-windows.ps1`: one-command Windows release build helper.
+- `scripts/install-prerequisites.bat`: one-click Windows prerequisite installer (winget-first).
+- `scripts/verify-prerequisites.bat`: prerequisite verification with non-zero exit on missing dependencies.
