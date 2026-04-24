@@ -1,0 +1,169 @@
+:root {
+  color-scheme: dark;
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+body {
+  margin: 0;
+  background: radial-gradient(circle at top, #191f4a 0%, #0b0f28 55%, #060816 100%);
+  color: #d9eeff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.app-shell {
+  min-height: 100vh;
+  padding: 14px 18px 24px;
+}
+
+.telemetry-strip {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(10, 25, 44, 0.75);
+  border: 1px solid rgba(106, 224, 255, 0.25);
+  border-radius: 14px;
+  padding: 8px 16px;
+  gap: 12px;
+}
+
+.telemetry-strip > div {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.content-grid {
+  margin-top: 14px;
+  display: grid;
+  grid-template-columns: minmax(600px, 1fr) 320px;
+  gap: 14px;
+  align-items: start;
+}
+
+.radar-canvas {
+  width: 100%;
+  max-width: 680px;
+  border-radius: 16px;
+  border: 1px solid rgba(100, 225, 255, 0.45);
+  box-shadow: 0 0 28px rgba(53, 220, 255, 0.25);
+}
+
+.side-panel {
+  background: rgba(8, 14, 35, 0.86);
+  border: 1px solid rgba(99, 170, 255, 0.3);
+  border-radius: 14px;
+  padding: 12px;
+}
+
+.side-panel h3 {
+  margin: 4px 0 8px;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #7cd9ff;
+}
+
+.side-panel ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 4px;
+}
+
+.side-panel li {
+  display: flex;
+  justify-content: space-between;
+  background: rgba(20, 34, 62, 0.65);
+  border-radius: 8px;
+  padding: 6px 8px;
+  font-size: 13px;
+}
+
+.band-low {
+  color: #82f5a8;
+}
+
+.band-medium {
+  color: #ffdd70;
+}
+
+.band-high {
+  color: #ff9f68;
+}
+
+.band-critical {
+  color: #ff588f;
+}
+
+.smart-panel {
+  margin-top: 14px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.smart-panel > div {
+  background: rgba(11, 21, 44, 0.82);
+  border: 1px solid rgba(131, 187, 255, 0.33);
+  border-radius: 12px;
+  padding: 10px 12px;
+}
+
+.smart-panel h4 {
+  margin: 0 0 8px;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #95d7ff;
+}
+
+.smart-panel p {
+  margin: 0;
+  font-size: 14px;
+}
+
+.settings-drawer {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+}
+
+.settings-toggle {
+  border: 1px solid rgba(153, 232, 255, 0.58);
+  background: rgba(9, 16, 38, 0.85);
+  color: #d8f2ff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  cursor: pointer;
+}
+
+.settings-content {
+  margin-top: 10px;
+  display: grid;
+  gap: 8px;
+  padding: 10px;
+  border-radius: 12px;
+  background: rgba(7, 13, 30, 0.95);
+  border: 1px solid rgba(115, 180, 255, 0.4);
+}
+
+.settings-content label {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  font-size: 13px;
+}
+
+.refresh-button {
+  border: 1px solid rgba(109, 212, 255, 0.6);
+  background: rgba(17, 30, 64, 0.85);
+  color: #d9f4ff;
+  border-radius: 10px;
+  padding: 8px;
+  font-size: 13px;
+  cursor: pointer;
+}

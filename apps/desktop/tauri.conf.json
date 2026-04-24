@@ -1,0 +1,18 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "cs2_webradar_extreme",
+  "identifier": "com.cs2.webradar.extreme",
+  "build": {
+    "frontendDist": "../../ui/dist"
+  },
+  "app": {
+    "windows": [
+      {
+        "title": "CS2 Webradar Extreme",
+        "width": 1280,
+        "height": 820,
+        "resizable": true
+      }
+    ]
+  }
+}

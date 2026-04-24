@@ -1,0 +1,8 @@
+{
+  "app.title": "CS2 Webradar Extreme",
+  "status.waiting": "Waiting for game process",
+  "status.recovering": "Recovering from transition",
+  "settings.overlay": "Overlay profile",
+  "settings.threat": "Threat rings",
+  "settings.grenade_timers": "Grenade timers"
+}

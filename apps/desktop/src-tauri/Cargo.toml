@@ -1,0 +1,17 @@
+[package]
+name = "cs2_webradar_extreme"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[dependencies]
+anyhow.workspace = true
+clap.workspace = true
+contracts = { path = "../../../crates/contracts" }
+core_engine = { path = "../../../crates/core_engine" }
+dump_refresh = { path = "../../../crates/dump_refresh" }
+dump_runtime = { path = "../../../crates/dump_runtime" }
+serde_json.workspace = true
+tokio.workspace = true
+tracing.workspace = true
+tracing-subscriber.workspace = true

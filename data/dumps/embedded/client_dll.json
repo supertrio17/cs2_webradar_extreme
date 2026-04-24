@@ -1,0 +1,21 @@
+{
+  "classes": [
+    {
+      "name": "C_CSPlayerPawn",
+      "fields": [
+        { "name": "m_iHealth", "type": "int32", "offset": 836 },
+        { "name": "m_iTeamNum", "type": "uint8", "offset": 995 },
+        { "name": "m_vOldOrigin", "type": "Vector", "offset": 4736 },
+        { "name": "m_ArmorValue", "type": "int32", "offset": 7488 }
+      ]
+    },
+    {
+      "name": "C_PlantedC4",
+      "fields": [
+        { "name": "m_bBombTicking", "type": "bool", "offset": 3840 },
+        { "name": "m_flC4Blow", "type": "float", "offset": 3868 },
+        { "name": "m_flDefuseCountDown", "type": "float", "offset": 3872 }
+      ]
+    }
+  ]
+}

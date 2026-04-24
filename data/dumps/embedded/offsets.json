@@ -1,0 +1,12 @@
+{
+  "dwGameEntitySystem": 32567440,
+  "dwGameEntitySystem_highestEntityIndex": 8440,
+  "dwLocalPlayerController": 32597112,
+  "dwLocalPlayerPawn": 30960256,
+  "dwPlantedC4": 32629872,
+  "dwViewMatrix": 32788048,
+  "dwGlowManager": 33212104,
+  "dwCSGOInput": 32901536,
+  "dwGlobalVars": 26849560,
+  "dwWeaponC4": 32520448
+}
