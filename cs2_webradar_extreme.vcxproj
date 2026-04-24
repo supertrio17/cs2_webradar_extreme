@@ -58,6 +58,8 @@
   <ItemGroup>
     <None Include="README.md" />
     <None Include="scripts\build-windows.ps1" />
+    <None Include="scripts\install-prerequisites.bat" />
+    <None Include="scripts\verify-prerequisites.bat" />
     <None Include="apps\desktop\tauri.conf.json" />
     <None Include="ui\package.json" />
   </ItemGroup>
