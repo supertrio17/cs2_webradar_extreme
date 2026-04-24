@@ -7,7 +7,6 @@ use contracts::{RadarEnvelope, PROTOCOL_VERSION};
 use core_engine::{Engine, EngineConfig, GameDataProvider, MockProvider};
 use dump_refresh::refresh_from_files;
 use dump_runtime::{resolve_active_dump, DumpRuntimeConfig};
-use tokio::sync::broadcast;
 use tracing::{info, warn};
 
 #[derive(Parser, Debug)]
@@ -100,7 +99,7 @@ async fn run_command(args: RunArgs) -> Result<()> {
         }
     }
 
-    let mut provider = MockProvider::new();
+    let provider = MockProvider::new();
     let expected_build = provider.current_build_number();
 
     let dump_config = DumpRuntimeConfig {
@@ -129,35 +128,20 @@ async fn run_command(args: RunArgs) -> Result<()> {
 }
 
 async fn stream_snapshots(mut engine: Engine<MockProvider>, args: RunArgs) -> Result<()> {
-    let (tx, mut rx) = broadcast::channel::<RadarEnvelope>(64);
     let tick_interval = Duration::from_millis(u64::from((1000_u16 / args.rate_hz.max(1)).max(1)));
+    let mut interval = tokio::time::interval(tick_interval);
+    let mut emitted = 0_u64;
 
-    let sender = tx.clone();
-    let max_ticks = args.max_ticks;
-    tokio::spawn(async move {
-        let mut interval = tokio::time::interval(tick_interval);
-        let mut emitted = 0_u64;
+    loop {
+        interval.tick().await;
+        let snapshot = engine.next_snapshot();
+        let envelope = RadarEnvelope {
+            protocol_version: PROTOCOL_VERSION,
+            emitted_at_ms: now_ms(),
+            snapshot,
+        };
 
-        loop {
-            interval.tick().await;
-            let snapshot = engine.next_snapshot();
-            let envelope = RadarEnvelope {
-                protocol_version: PROTOCOL_VERSION,
-                emitted_at_ms: now_ms(),
-                snapshot,
-            };
-
-            let _ = sender.send(envelope);
-            emitted += 1;
-            if max_ticks.is_some_and(|limit| emitted >= limit) {
-                break;
-            }
-        }
-    });
-
-    let mut consumed = 0_u64;
-    while let Ok(envelope) = rx.recv().await {
-        consumed += 1;
+        emitted += 1;
         if args.stream_json {
             println!("{}", serde_json::to_string(&envelope)?);
         } else {
@@ -170,7 +154,7 @@ async fn stream_snapshots(mut engine: Engine<MockProvider>, args: RunArgs) -> Re
             );
         }
 
-        if args.max_ticks.is_some_and(|limit| consumed >= limit) {
+        if args.max_ticks.is_some_and(|limit| emitted >= limit) {
             break;
         }
     }
